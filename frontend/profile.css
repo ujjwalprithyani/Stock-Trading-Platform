@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.profile-container{
+    padding: 1.8rem;
+    padding-bottom: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+
+}
+
+.left{
+    width: 80%;
+    padding: 1rem;
+}
+
+.upper{
+    margin-left: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    text-align: left;
+}
+.upper h2{
+    margin-bottom: 0.3rem;
+    font-size: 2.2rem;
+}
+
+.upper h4,
+.card h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.lower {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 100%;
+    margin: 0rem 1rem;
+    padding: 0.8rem;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.card p {
+    font-size: 2.1rem;
+}
+
+.right{
+    width: 20%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.right img{
+    height: 160px;
+    width: 160px;
+    margin-bottom: 0.8rem;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.stock-container{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-list-heading{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row{
+    border: 1px solid white;
+    background-color: #252323;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    display: flex;    
+    justify-content: space-between;
+}
+
+.row>div{
+    display: flex;    
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.intro{
+    display: flex;
+}
+
+.intro img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.intro .name{
+    margin: auto 0;
+    padding: 0 0.8rem ;
+}
+
+.intro .name h4{
+    margin-bottom: 0.2rem;
+}
+
+
+.buy{
+    margin-top: 0.4rem;
+
+}
+
+.sell input{
+    width: 80px;
+    height: max-content;
+    font-size: 1.2rem;
+    margin-right:1rem ;
+    border-radius: 8px;
+    border: 1px solid white;
+    padding: 0.4rem 0.2rem;
+    background-color: #111;
+    color: white;
+}
+
+.sell button{
+    margin-left: 1rem;
+    padding: 0.4rem 3.4rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.sell button:hover{
+    background-color: #111 ;
+    color: white ;
+    border: 1px solid white ;
+    cursor: pointer;
+}

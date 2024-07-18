@@ -1,0 +1,313 @@
+/* Add these styles to your existing CSS file */
+
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #222;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+}
+
+.button-container {
+    background-color: #333;
+    border-radius: 5px;
+    padding: 15px 25px;
+    display: flex;
+    margin: 0 auto; /* Center the container horizontally */
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+.header-link {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    border-radius: 1.2rem;
+}
+
+.header-link:hover{
+    color: black;
+    background-color: white;
+}
+
+#profile-container {
+    margin-left: auto;
+}
+
+#profile-btn {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 80vh;
+}
+
+#main-text {
+    display: flex;
+    flex-direction: column;
+}
+
+#main-text h1{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+#main-text p{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#main-image {
+    max-width: 35%; /* Adjust size as needed */
+    border-radius: 10px;
+}
+
+.stock-heading{
+    display: flex;
+    justify-content: space-between;
+}
+
+#stock-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.index-chart{
+    width: 100%;
+    overflow: hidden;
+}
+
+#stock-chart {
+    width: 100%; 
+    height: 600px;
+}
+
+#stock-info {
+    width: 100%;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #333;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.stock-index-heading{
+    text-align: center;
+}
+
+#stock-info h2 {
+    margin-bottom: 10px;
+}
+
+.stock-index{
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    background-color: #000;
+    margin: 0.2rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.line-break {
+    height: 2px;
+    background-color: #fff;
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+#stock-list-section,
+#second-stock-list-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.stock-list-item {
+    width: 48%; /* Adjust width as needed */
+}
+
+.stock-rectangle {
+    width: 207%;
+    height: 80px; /* Adjust height as needed */
+    background-color: #333;
+    border-radius: 25px;
+    margin-bottom: 0%;
+    /*give hovers color as #333 as bg color as main page color*/
+}
+
+.allstocks{
+    padding: 1rem;
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.stock{
+    width: 100%;
+    padding: 1rem;
+    background-color: rgb(97, 91, 91);
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.4rem;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.stocksymbol{
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    #main-content {
+        padding: 10px;
+    }
+
+    #main-text {
+        text-align: center;
+    }
+
+    #main-image {
+        max-width: 100%;
+    }
+
+    #stock-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #stock-chart,
+    #stock-info {
+        width: 100%;
+    }
+
+    #stock-list-section,
+    #second-stock-list-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stock-list-item {
+        width: 100%;
+    }
+}
+/* Add these styles to your existing CSS file */
+
+.stock-list-item::after {
+    content: "";
+    display: block;
+    width: 207%;
+    height: 1px; /* Adjust the height of the line as needed */
+    background-color: #fff;
+    margin-top: 5px
+    ; /* Adjust the margin-top to set the space between rectangles and the line */
+}
+
+/* Add these styles to your existing CSS file */
+/* Add these styles to your existing CSS file */
+
+.circle-container {
+    width: 30px; /* Adjust width as needed */
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #ff0000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.stock-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Add some space between circle and stock info */
+}
+
+.symbol-container,
+.change-container {
+    margin-left: 20px; /* Add some space between elements */
+}
+
+.symbol-btn,
+.change-btn {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.change-btn.positive {
+    background-color: #4CAF50; /* Green */
+}
+
+.change-btn.negative {
+    background-color: #FF5733; /* Reddish */
+}
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+#contact-info,
+#social-media {
+    flex: 1;
+}
+
+#social-media a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #fff;
+}

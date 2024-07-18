@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header>
+        <img id="logo" src="logo.jpg" alt="Company Logo"> <!-- Replace 'logo.jpg' with your actual logo path -->
+        
+        <div id="button-container" class="button-container">
+            <a class="header-link" href="index.html">Home</a>
+            <a class="header-link" href="profile.html">Portfolio</a>
+            <a class="header-link" href="aboutus.html">About Us</a>
+        </div>
+
+        <div id="profile-container">
+            <button id="profile-btn">Profile</button>
+        </div>
+    </header>
+    <section class="profile-container">
+        <div class="left">
+            <div class="upper">
+                <h2>Welcome Back, Vivek</h2>
+                <h4>Have a look at your stats!!</h4>
+            </div>
+            <div class="lower">
+                <div class="card">
+                    <h4>Total Number of Companies</h4>
+                    <p id="number-of-company"></p>
+                </div>
+                <div class="card">
+                    <h4>Total Number of Shares</h4>
+                    <p id="number-of-share"></p>
+                </div>
+                <div class="card">
+                    <h4>Total Money invested</h4>
+                    <p id="money-invested"></p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <img src="./logo.jpg" alt="">
+            <h4>Vighnesh Gupta</h4>
+        </div>
+    </section>
+    <div class="portfolio-list-heading">
+        <span>Name</span>
+        <span>Quantity</span>
+        <span>Current Total Price</span>
+        <span>Quantity To Sell</span>
+    </div>
+    <div id="portfolio-list"></div>
+    
+    
+</body>
+
+<script>
+    async function loadPortfolioData(){
+        const response = await fetch('http://localhost:8080/portfolio');
+        const portfolioDetails = await response.json();
+        console.log(portfolioDetails);
+        let numShares = 0;
+        let numCompanies = 0;
+        let moneyInvested = 0;
+
+        const portfolioList = document.getElementById('portfolio-list');
+        numCompanies = portfolioDetails.length;
+        for(let i=0;i<portfolioDetails.length;i++){
+            numShares += portfolioDetails[i]['Quantity'];
+            moneyInvested += portfolioDetails[i]['Value of Quantity'] / portfolioDetails[i]['Quantity'];
+            portfolioList.innerHTML += `
+        <section class="stock-container" id="portfolio-container-${portfolioDetails[i].ID}">
+        <div class="row">
+            <div class="intro">
+                <img src="vodafone-idea--big.svg" alt="">
+                <div class="name">
+                    <h4>${portfolioDetails[i]['Stock Name']}</h4>
+                    <h6>${portfolioDetails[i].Sector}</h6>
+                </div>
+            </div>
+            <div>
+                <p id="sellQuantity-${portfolioDetails[i].ID}">${portfolioDetails[i]['Quantity']}</p>
+            </div>
+            <div>
+                <p>${(Number(portfolioDetails[i]['Value of Quantity'])/Number(portfolioDetails[i]['Quantity'])).toFixed(2)}</p>
+            </div>
+            <div class="sell">
+                <input type="number" id="sellval-${portfolioDetails[i].ID}" placeholder="00" min="0" >
+                <button onclick="sellStock(${portfolioDetails[i].ID})">SELL</button>
+            </div>
+        </div>
+    </section>
+        `
+        }
+
+        document.getElementById('number-of-company').innerText = numCompanies;
+        document.getElementById('number-of-share').innerText = numShares;
+        document.getElementById('money-invested').innerText = moneyInvested.toFixed(2);
+
+       
+    }
+    loadPortfolioData();
+    async function sellStock(stockId) {
+        console.log(document.getElementById('sellval-'+stockId).value);
+        console.log(document.getElementById('sellQuantity-'+stockId).innerText);
+        if(Number(document.getElementById('sellval-'+stockId).value) > Number(document.getElementById('sellQuantity-'+stockId).innerText)){
+            alert('cant select more shares than present');
+            return;
+        }
+        const data = {
+            id : stockId,
+            quantity : document.getElementById("sellval-"+stockId).value
+        }
+        const url = "http://localhost:8080/sell"
+        const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        if (response.ok) {
+            const responseData = await response.json();
+            window.location.replace('/index.html');
+            console.log('done');
+            return responseData;
+        } else {
+            console.error("Failed to sell stock:", response.status, response.statusText);
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stock.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img id="logo" src="logo.jpg" alt="Company Logo"> <!-- Replace 'logo.jpg' with your actual logo path -->
+        
+        <div id="button-container" class="button-container">
+            <a class="header-link" href="index.html">Home</a>
+            <a class="header-link" href="profile.html">Portfolio</a>
+            <a class="header-link" href="aboutus.html">About Us</a>
+        </div>
+
+        <div id="profile-container">
+            <button id="profile-btn">Profile</button>
+        </div>
+    </header>
+    <section class="company">
+        <div class="image-container">
+            <img src="./vodafone-idea--big.svg" alt="">
+        </div>
+        <div id="info-container" class="info-container">
+            
+        </div>
+        <div class="chart">
+            <iframe src="combined_chart.html" frameborder="0"  allowfullscreen width="100%" height="100%"></iframe>
+        </div>
+
+    </section>
+    
+</body>
+<script>
+    const searchParams = new URLSearchParams(window.location.search);
+    console.log(searchParams.get('userId')); 
+    async function stockDetail(id){
+        const response = await fetch(`http://localhost:8080/individualStock/${id}`);
+        const stockDetail = await response.json();
+        console.log(stockDetail);
+        const mainRef = document.getElementById('info-container');
+        mainRef.innerHTML += `
+            <h2>${stockDetail[0].Name}</h2>
+            <h4>Mobile telecommunication</h4>
+            <p>${stockDetail[0]['Current Price']}RS</p>
+
+            <div class="buy">
+                <input type="number" id="buyval-${id}" placeholder="00">
+                <button onclick="buyStock(${id})">BUY</button>
+            </div>
+        `
+    }
+
+    async function buyStock(stockId) {
+        const data = {
+            id : stockId,
+            quantity : document.getElementById("buyval-"+stockId).value
+        }
+        const url = "http://localhost:8080/buy"
+        const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        if (response.ok) {
+            const responseData = await response.json();
+            window.location.replace('/index.html');
+            console.log('done');
+            return responseData;
+        } else {
+            console.error("Failed to buy stock:", response.status, response.statusText);
+        }
+    }
+
+
+    stockDetail(searchParams.get('userId'));
+</script>
+</html>

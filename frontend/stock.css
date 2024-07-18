@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #111;
+    padding: 1rem 2rem;
+}
+
+.company{
+    width: 100%;
+    /* padding: 2rem; */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.image-container img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.info-container{
+    height: max-content;
+    margin: auto 0 ;
+    padding:0 2rem ;
+}
+
+.info-container h2{
+    font-size: 3.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.info-container h4{
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+}
+
+.info-container p{
+    font-weight: 700;
+    font-size: 2.8rem;
+}
+
+.buy{
+    margin-top: 0.4rem;
+    display: flex;
+
+}
+.buy input{
+    width: 80px;
+    height: max-content;
+    font-size: 1.2rem;
+    margin-right:1rem ;
+    border-radius: 8px;
+    border: 1px solid white;
+    padding: 0.4rem 0.2rem;
+    background-color: #111;
+    color: white;
+}
+
+.buy button{
+    padding: 0.4rem 3.4rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.buy button:hover{
+    background-color: #111 ;
+    color: white ;
+    border: 1px solid white ;
+    cursor: pointer;
+}
+
+.chart iframe{
+    width: 800px;
+    height: 600px;
+    scale: 0.8;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <header>
+        <img id="logo" src="logo.jpg" alt="Company Logo"> <!-- Replace 'logo.jpg' with your actual logo path -->
+        
+        <div id="button-container" class="button-container">
+            <a class="header-link" href="index.html">Home</a>
+            <a class="header-link" href="profile.html">Portfolio</a>
+            <a class="header-link" href="aboutus.html">About Us</a>
+        </div>
+
+        <div id="profile-container">
+            <button id="profile-btn">Profile</button>
+        </div>
+    </header>
+
+<!-- Main Content Section -->
+<div id="main-content">
+    <div id="main-text">
+        <h1>Welcome to our Stock Trading Platform</h1>
+        <p>Trade stocks with ease and confidence. Your gateway to financial success!</p>
+    </div>
+    <img id="main-image" src="home_img_desktop.webp" alt="Stock Trading Image"> <!-- Replace 'home_img_desktop.webp' with your actual image path -->
+</div>
+
+    <div id="stock-section">
+        <div class="index-chart">
+            <iframe id="stock-chart" src="combined_chart.html" frameborder="0" allowfullscreen width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <!-- White line break -->
+    <div class="line-break"></div>
+    <div class="stock-heading">
+        <span>Name</span>
+        <span>Opening Price</span>
+        <span>Closing Price</span>
+        <span>Highest Price</span>
+        <span>Lowest Price</span>
+        <span>Current Price</span>
+    </div>
+
+    <div id="stocks">
+    </div>
+    
+<!-- Footer Section -->
+<footer>
+    <div id="footer-content">
+        <div id="contact-info">
+            <h3>Contact Us</h3>
+            <p>Email: info@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div id="social-media">
+            <h3>Connect with Us</h3>
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+<script>
+    async function stocks(){
+        const response = await fetch("http://localhost:8080");
+        const stockDetail = await response.json();
+        console.log(stockDetail);
+        const stocksSection = document.getElementById('stocks');
+        for(let i=0;i<5;i++){
+            stocksSection.innerHTML += `
+                    <section class="stock-container" id="stock-container-${stockDetail[i].ID}" style="margin-top: 1rem;">
+        <div class="row">
+            <div class="intro">
+                <img src="vodafone-idea--big.svg" alt="">
+                <div class="name">
+                    <h4>${stockDetail[i].Name}</h4>
+                    <h6>Telecommunication</h6>
+                </div>
+            </div>
+            <div>
+                <p>${stockDetail[i]['Opening Price']}</p>
+            </div>
+            <div>
+                <p>${stockDetail[i]['Closing Price']}</p>
+            </div>
+            <div>
+                <p>${stockDetail[i]['Highest']}</p>
+            </div>
+            <div>
+                <p>${stockDetail[i]['Lowest']}</p>
+            </div>
+            <div>
+                <p>${stockDetail[i]['Current Price']}</p>
+            </div>
+        </div>
+    </section>
+            `
+        }
+
+        for (let i = 0; i < stockDetail.length; i++) {
+            const sectionId = `stock-container-${stockDetail[i].ID}`;
+            const section = document.getElementById(sectionId);
+
+            section.addEventListener('click', () => {
+                window.location.href = `http://localhost:5500/stock.html?userId=${stockDetail[i].ID}`;
+            });
+        }
+
+    }
+    stocks();
+</script>
+
+</html>
